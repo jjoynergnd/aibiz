@@ -1,0 +1,288 @@
+.page {
+  min-height: 100vh;
+  padding: 24px;
+  background:
+    radial-gradient(circle at top, #f7fafc 0%, #eef3f7 36%, #e8edf3 100%);
+  color: #15212b;
+}
+
+.hero {
+  display: grid;
+  gap: 24px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 12px;
+}
+
+.heroPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.kicker,
+.eyebrow {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #486173;
+}
+
+.headline {
+  margin: 0;
+  font-size: clamp(2.25rem, 6vw, 4rem);
+  line-height: 1.05;
+}
+
+.subheadline,
+.descriptor {
+  margin: 0;
+  max-width: 58ch;
+  color: #516575;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.trustList {
+  display: grid;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.trustCard,
+.formCard,
+.successCard,
+.dashboard,
+.emptyState,
+.leadRow {
+  border: 1px solid #d8e2ea;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 14px 32px rgba(21, 33, 43, 0.08);
+}
+
+.trustCard {
+  padding: 16px 18px;
+  font-weight: 600;
+}
+
+.formCard,
+.successCard,
+.dashboard {
+  padding: 20px;
+}
+
+.cardHeader,
+.sectionHeading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cardTitle,
+.sectionTitle {
+  margin: 6px 0 0;
+  font-size: 1.4rem;
+}
+
+.form {
+  display: grid;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  color: #2f4453;
+  font-weight: 600;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #cad6df;
+  border-radius: 12px;
+  background: #fff;
+  color: #15212b;
+  font: inherit;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 112px;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: 2px solid #8cb3d1;
+  outline-offset: 2px;
+}
+
+.error {
+  color: #b44343;
+  font-size: 0.85rem;
+}
+
+.primaryButton,
+.secondaryButton {
+  border: none;
+  border-radius: 12px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.primaryButton {
+  padding: 14px 18px;
+  background: #17384d;
+  color: #fff;
+}
+
+.secondaryButton {
+  padding: 10px 14px;
+  background: #e9eff4;
+  color: #17384d;
+}
+
+.primaryButton:hover,
+.secondaryButton:hover {
+  transform: translateY(-1px);
+}
+
+.secondaryButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+}
+
+.previewList {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.previewCard {
+  padding: 16px;
+  border-radius: 16px;
+  background: #f5f8fb;
+  border: 1px solid #dce5ec;
+}
+
+.previewCard h3,
+.leadInfo h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.previewCard p,
+.leadInfo p,
+.emptyState p {
+  margin: 0;
+  color: #546a7a;
+  line-height: 1.6;
+}
+
+.dashboard {
+  max-width: 1180px;
+  margin: 24px auto 0;
+}
+
+.countBadge {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #eff4f8;
+  color: #395364;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.leadList {
+  display: grid;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.leadRow {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 18px;
+}
+
+.leadInfo {
+  display: grid;
+  gap: 6px;
+}
+
+.leadMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.statusNew,
+.statusContacted {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.statusNew {
+  background: #eef6ea;
+  color: #2f6a35;
+}
+
+.statusContacted {
+  background: #eaf1f7;
+  color: #2d5878;
+}
+
+@media (min-width: 720px) {
+  .page {
+    padding: 40px;
+  }
+
+  .trustList {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .leadRow {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .leadMeta {
+    align-items: flex-end;
+  }
+}
+
+@media (min-width: 980px) {
+  .hero {
+    grid-template-columns: minmax(0, 1.1fr) minmax(360px, 460px);
+    align-items: start;
+    gap: 40px;
+    padding-top: 28px;
+  }
+}
