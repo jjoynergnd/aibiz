@@ -10,14 +10,37 @@ type LeadFormProps = {
 const initialValues: LeadFormValues = {
   name: '',
   phone: '',
+  serviceAddress: '',
   email: '',
   service: leadConfig.services[0],
   message: '',
 }
 
+function formatPhoneValue(value: string) {
+  const digits = value.replace(/\D/g, '').slice(0, 10)
+
+  if (digits.length === 0) {
+    return ''
+  }
+
+  if (digits.length < 4) {
+    return `(${digits}`
+  }
+
+  if (digits.length < 7) {
+    return `(${digits.slice(0, 3)}) ${digits.slice(3)}`
+  }
+
+  return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`
+}
+
 export default function LeadForm({ onSubmit }: LeadFormProps) {
   const [formValues, setFormValues] = useState<LeadFormValues>(initialValues)
-  const [errors, setErrors] = useState<{ name?: string; phone?: string }>({})
+  const [errors, setErrors] = useState<{
+    name?: string
+    phone?: string
+    serviceAddress?: string
+  }>({})
 
   function handleChange(
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
@@ -26,21 +49,29 @@ export default function LeadForm({ onSubmit }: LeadFormProps) {
 
     setFormValues((currentValues) => ({
       ...currentValues,
-      [name]: value,
+      [name]: name === 'phone' ? formatPhoneValue(value) : value,
     }))
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    const nextErrors: { name?: string; phone?: string } = {}
+    const nextErrors: {
+      name?: string
+      phone?: string
+      serviceAddress?: string
+    } = {}
 
     if (!formValues.name.trim()) {
       nextErrors.name = 'Name is required.'
     }
 
-    if (!formValues.phone.trim()) {
-      nextErrors.phone = 'Phone is required.'
+    if (formValues.phone.replace(/\D/g, '').length < 10) {
+      nextErrors.phone = 'Phone must include at least 10 digits.'
+    }
+
+    if (!formValues.serviceAddress.trim()) {
+      nextErrors.serviceAddress = 'Service Address is required.'
     }
 
     setErrors(nextErrors)
@@ -84,6 +115,20 @@ export default function LeadForm({ onSubmit }: LeadFormProps) {
             onChange={handleChange}
           />
           {errors.phone ? <small className={styles.error}>{errors.phone}</small> : null}
+        </label>
+
+        <label className={styles.field}>
+          <span>Service Address</span>
+          <input
+            name="serviceAddress"
+            type="text"
+            placeholder="123 Main St, Pittsburgh, PA"
+            value={formValues.serviceAddress}
+            onChange={handleChange}
+          />
+          {errors.serviceAddress ? (
+            <small className={styles.error}>{errors.serviceAddress}</small>
+          ) : null}
         </label>
 
         <label className={styles.field}>

@@ -4,6 +4,7 @@ export type Lead = {
   id: string
   name: string
   phone: string
+  serviceAddress: string
   email?: string
   service: string
   message?: string
@@ -14,6 +15,7 @@ export type Lead = {
 export type LeadFormValues = {
   name: string
   phone: string
+  serviceAddress: string
   email: string
   service: string
   message: string

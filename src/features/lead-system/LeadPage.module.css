@@ -229,6 +229,11 @@
 .leadInfo {
   display: grid;
   gap: 6px;
+  max-width: 100%;
+}
+
+.leadInfo p {
+  overflow-wrap: anywhere;
 }
 
 .leadMeta {

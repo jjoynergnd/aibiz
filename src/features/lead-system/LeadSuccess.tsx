@@ -22,7 +22,8 @@ export default function LeadSuccess({ lead }: LeadSuccessProps) {
         <div className={styles.previewCard}>
           <h3>Business message</h3>
           <p>
-            New lead: {lead.name} - {lead.service} - {lead.phone}
+            New lead: {lead.name} - {lead.service} - {lead.phone} -{' '}
+            {lead.serviceAddress}
           </p>
         </div>
       </div>

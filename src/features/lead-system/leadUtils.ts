@@ -5,6 +5,7 @@ export function createDemoLead(formValues: LeadFormValues): Lead {
     id: crypto.randomUUID(),
     name: formValues.name.trim(),
     phone: formValues.phone.trim(),
+    serviceAddress: formValues.serviceAddress.trim(),
     email: formValues.email.trim() || undefined,
     service: formValues.service,
     message: formValues.message.trim() || undefined,

@@ -32,6 +32,7 @@ export default function LeadDashboard({
                 <h3>{lead.name}</h3>
                 <p>{lead.service}</p>
                 <p>{lead.phone}</p>
+                <p>{lead.serviceAddress}</p>
               </div>
 
               <div className={styles.leadMeta}>
