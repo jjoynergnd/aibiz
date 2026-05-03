@@ -6,6 +6,10 @@ type LeadDashboardProps = {
   onMarkContacted: (leadId: string) => void
 }
 
+function formatLeadTime(createdAt: number) {
+  return new Date(createdAt).toLocaleString()
+}
+
 export default function LeadDashboard({
   leads,
   onMarkContacted,
@@ -22,7 +26,7 @@ export default function LeadDashboard({
 
       {leads.length === 0 ? (
         <div className={styles.emptyState}>
-          <p>No leads submitted yet. Use the form above to add the first one.</p>
+          <p>No leads yet. Submit a request to see it appear here.</p>
         </div>
       ) : (
         <div className={styles.leadList}>
@@ -33,6 +37,7 @@ export default function LeadDashboard({
                 <p>{lead.service}</p>
                 <p>{lead.phone}</p>
                 <p>{lead.serviceAddress}</p>
+                <p>{formatLeadTime(lead.createdAt)}</p>
               </div>
 
               <div className={styles.leadMeta}>

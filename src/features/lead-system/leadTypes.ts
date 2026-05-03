@@ -9,7 +9,7 @@ export type Lead = {
   service: string
   message?: string
   status: LeadStatus
-  createdAt: string
+  createdAt: number
 }
 
 export type LeadFormValues = {

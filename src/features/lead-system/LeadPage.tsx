@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import LeadDashboard from './LeadDashboard'
 import LeadForm from './LeadForm'
 import LeadSuccess from './LeadSuccess'
@@ -8,8 +8,29 @@ import { createDemoLead } from './leadUtils'
 import styles from './LeadPage.module.css'
 
 export default function LeadPage() {
-  const [leads, setLeads] = useState<Lead[]>([])
+  const [leads, setLeads] = useState<Lead[]>(() => {
+    try {
+      const stored = localStorage.getItem('lead-system.leads')
+      return stored ? JSON.parse(stored) : []
+    } catch {
+      return []
+    }
+  })
   const [latestLead, setLatestLead] = useState<Lead | null>(null)
+
+  useEffect(() => {
+    if (leads.length > 0) {
+      setLatestLead(leads[0])
+    }
+  }, [])
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('lead-system.leads', JSON.stringify(leads))
+    } catch (err) {
+      console.error('Failed to save leads to localStorage', err)
+    }
+  }, [leads])
 
   function handleCreateLead(formValues: LeadFormValues) {
     const nextLead = createDemoLead(formValues)

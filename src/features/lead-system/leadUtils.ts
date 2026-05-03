@@ -10,6 +10,6 @@ export function createDemoLead(formValues: LeadFormValues): Lead {
     service: formValues.service,
     message: formValues.message.trim() || undefined,
     status: 'New',
-    createdAt: new Date().toISOString(),
+    createdAt: Date.now(),
   }
 }
